@@ -18,7 +18,7 @@ implementation
   uint16_t b = 0;
   event void Boot.booted()
   {
-  	call Timer.startPeriodic(30000);
+  	call Timer.startPeriodic(60000);
   }
 
   event void Timer.fired(){
