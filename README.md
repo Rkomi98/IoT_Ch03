@@ -22,6 +22,8 @@ from the terminal, we created a new simulation in **cooja** and we put a sky mot
 We got, in this way, 15 messages each with three digits separated with comma, e.g. _1,0,0 when Led0 is toggled for the first time_.
 
 As a next step, we started a serial socket and read from **Node-Red** the LEDs status.
+![node-red](https://user-images.githubusercontent.com/72648197/167299714-256279cf-e455-4469-876f-bb61e07506ba.png)
+
 
 At the function node of the flow, we wrote a code to take each digit of one message and put it in three different columns. With the mqtt node we sent to ThingSpeak at each field the corresponding value of the column:
 * Column 1 has the values of Led0 that are sent to field 1.
