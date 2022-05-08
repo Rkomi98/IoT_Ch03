@@ -1,0 +1,116 @@
+[
+    {
+        "id": "482628c1.5c36d8",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "a6a35844.3c572",
+        "type": "tcp in",
+        "z": "482628c1.5c36d8",
+        "name": "",
+        "server": "client",
+        "host": "localhost",
+        "port": "60001",
+        "datamode": "stream",
+        "datatype": "utf8",
+        "newline": "\\n",
+        "topic": "",
+        "base64": false,
+        "x": 330,
+        "y": 180,
+        "wires": [
+            [
+                "da91d3eb.a49c78"
+            ]
+        ]
+    },
+    {
+        "id": "da91d3eb.a49c78",
+        "type": "csv",
+        "z": "482628c1.5c36d8",
+        "name": "",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "x": 650,
+        "y": 180,
+        "wires": [
+            [
+                "4f2d53f4.f7db64"
+            ]
+        ]
+    },
+    {
+        "id": "4f2d53f4.f7db64",
+        "type": "function",
+        "z": "482628c1.5c36d8",
+        "name": "MQTT msg",
+        "func": "var R = msg.payload.col1\nvar G = msg.payload.col2\nvar B = msg.payload.col3\n\nvar channel_id = \"1727269\"\nmsg.topic=\"channels/\"+channel_id+\"/publish\"\nmsg.payload = \"field1=\"+R+\"&field2=\"+G+\"&field3=\"+B+\"&status=MQTTPUBLISH\"\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 870,
+        "y": 180,
+        "wires": [
+            [
+                "d4b2292a.860a1",
+                "2edc49a5.478936"
+            ]
+        ]
+    },
+    {
+        "id": "2edc49a5.478936",
+        "type": "mqtt out",
+        "z": "482628c1.5c36d8",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "854fa01b.f5cb3",
+        "x": 1170,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "d4b2292a.860a1",
+        "type": "debug",
+        "z": "482628c1.5c36d8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 1170,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "854fa01b.f5cb3",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "IoT_ch_4",
+        "broker": "mqtt3.thingspeak.com",
+        "port": "1883",
+        "clientid": "MT0SHgAzIxgZFygvGBsTLRM",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    }
+]
